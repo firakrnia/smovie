@@ -13,13 +13,12 @@ const content = db.define('content', {
         type: Sequelize.INTEGER(3)
     },
     sinopsis: {
-        type: Sequelize.STRING(25),
+        type: Sequelize.TEXT,
         notNull: true,
       },
 
     jenis: {
-        type: Sequelize.ENUM('film', 'drama'),
-        defaultValue: 'film'
+        type: Sequelize.ENUM('film', 'drama')
     },
 
     tahun:{
@@ -40,9 +39,9 @@ const content = db.define('content', {
 negara.hasMany(content,{
     foreignKey: 'id_negara'
 })
-// content.negara(category,{
-//     foreignKey: 'id_negara'
-// })
+content.belongsTo(negara,{
+    foreignKey: 'id_negara'
+})
   
 category.belongsToMany(content, { through: 'film_kategori' });
 content.belongsToMany(category, { through: 'film_kategori'});

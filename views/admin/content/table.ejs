@@ -1,0 +1,47 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Judul Film</th>
+      <th>Sinopsis</th>
+      <th>Negara</th>
+      <th>Kategori</th>
+      <th>Jenis</th>
+      <th>Tahun Penayangan</th>
+      <th>Sampul</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < content.length; i++){ %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= content[i].nama%></td>
+          <td><%= content[i].sinopsis%></td>
+          <td><%= content[i].negara?.nama ?? '-' %></td>
+          <td>
+            <% content[i].categories?.forEach(category => { %>
+              <span class="badge badge-warning">
+                <%= category?.nama%>
+              </span>
+            <% }) %>
+          </td>
+          <td><%= content[i].jenis%></td>
+          <td><%= content[i].tahun%></td>
+          <td><%= content[i].sampul_film %></td>
+          <td>
+            <a href="/content/edit/<%= content[i].id %>" class="btn btn-info btn-sm">
+              <i class="fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <form style="display: inline-block;" action="/content/delete/<%= content[i].id %>?_method=DELETE" method="POST">
+              <button class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>

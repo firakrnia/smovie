@@ -7,6 +7,7 @@ const bank = require('./bank')
 const payment = require('./payment')
 const user = require('./user')
 const negara = require('./negara')
+const content = require('./content')
 
 router.dashboard = dashboard
 router.category = category
@@ -16,5 +17,6 @@ router.bank = bank
 router.payment = payment
 router.user = user
 router.negara = negara
+router.content = content
 
 module.exports = router;

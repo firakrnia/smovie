@@ -39,7 +39,8 @@ app.use('/bank', indexRouter.bank)
 app.use('/payment', indexRouter.payment)
 
 app.use('/negara', indexRouter.negara)
-app.use('/category', indexRouter.category);
+app.use('/category', indexRouter.category)
+app.use('/content', indexRouter.content)
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
