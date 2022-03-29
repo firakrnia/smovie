@@ -4,14 +4,21 @@ const controller={}
 
 controller.index = async function(req,res){
     try {
-        res.render('index', {
-            name: req.session.user.name,
-            title: 'Dashboard Page'
-        })
+        res.render('index')
     } catch (error) {
-        console.log(err)
+        console.log(error)
     }
 }
+// controller.index = async function(req,res){
+//     try {
+//         res.render('index', {
+//             name: req.session.user.name,
+//             title: 'Dashboard Page'
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
 module.exports= controller

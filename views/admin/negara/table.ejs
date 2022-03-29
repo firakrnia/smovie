@@ -2,18 +2,18 @@
     <thead>
     <tr>
       <th>No</th>
-      <th>Name</th>
+      <th>Nama</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
-      <% for(let i = 0; i < category.length; i++){ %>
+      <% for(let i = 0; i < negara.length; i++){ %>
         <tr>
           <td><%= i + 1 %></td>
-          <td><%= category[i].nama %></td>
+          <td><%= negara[i].nama %></td>
           <td>
-            <form action="/category/delete/<%= category[i].id %>?_method=DELETE" method="POST">
-              <a href="/category/edit/<%= category[i].id %>" class="btn btn-info btn-sm">
+            <form action="/negara/delete/<%= negara[i].id %>?_method=DELETE" method="POST">
+              <a href="/negara/edit/<%= negara[i].id %>" class="btn btn-info btn-sm">
                 <i class="fas fa-pencil-alt"></i>
                 Edit
               </a>

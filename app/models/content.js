@@ -40,9 +40,9 @@ const content = db.define('content', {
 negara.hasMany(content,{
     foreignKey: 'id_negara'
 })
-content.negara(category,{
-    foreignKey: 'id_negara'
-})
+// content.negara(category,{
+//     foreignKey: 'id_negara'
+// })
   
 category.belongsToMany(content, { through: 'film_kategori' });
 content.belongsToMany(category, { through: 'film_kategori'});
