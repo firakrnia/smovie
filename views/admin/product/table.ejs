@@ -1,0 +1,63 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Specification</th>
+      <th>Image</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < product.length; i++){ %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= product[i].name%></td>
+          <td><%= product[i].category?.name ?? '-' %></td>
+          <td>
+            <% product[i].specifications?.forEach(specification => { %>
+              <span class="badge badge-warning">
+                <%= specification?.type%> <%= specification?.type_name %> 
+              </span>
+            <% }) %>
+          </td>
+          <td><%= product[i].thumbnail %></td>
+          <td>
+            <% if(product[i].status === 'Y') { %>
+              <span class="badge badge-success">
+                ON
+              </span>
+            <% } else { %>
+              <span class="badge badge-danger">
+                OFF
+              </span>
+            <% } %>
+          </td>
+          <td>
+            <form action="/product/status/<%= product[i].id %>?_method=PUT" method="POST" style="display: inline-block;">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-folder"></i>
+                <% if(product[i].status === 'Y') { %>                 
+                    OFF                 
+                <% } else { %>
+                    ON
+                <% } %>
+              </button>
+            </form>
+            <a href="/product/edit/<%= product[i].id %>" class="btn btn-info btn-sm">
+              <i class="fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <form style="display: inline-block;" action="/product/delete/<%= product[i].id %>?_method=DELETE" method="POST">
+              <button class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
