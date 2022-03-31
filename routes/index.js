@@ -8,6 +8,7 @@ const payment = require('./payment')
 const user = require('./user')
 const negara = require('./negara')
 const content = require('./content')
+const casting = require('./casting')
 
 router.dashboard = dashboard
 router.category = category
@@ -18,5 +19,6 @@ router.payment = payment
 router.user = user
 router.negara = negara
 router.content = content
+router.casting = casting
 
 module.exports = router;

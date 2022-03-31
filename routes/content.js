@@ -9,8 +9,8 @@ const os = require('os')
 router.get('/', controller.content.index)
 router.get('/add',  controller.content.viewAdd)
 router.post('/add', multer({dest:os.tmpdir()}).single('image'), controller.content.store)
-router.get('/edit/:id', controller.content.viewEdit)
-router.put('/edit/:id', multer({dest:os.tmpdir()}).single('image'), controller.content.put)
+router.get('/:id', controller.content.viewEdit)
+router.put('/:id', multer({dest:os.tmpdir()}).single('image'), controller.content.put)
 router.delete('/delete/:id', controller.content.delete)
 
 module.exports = router;

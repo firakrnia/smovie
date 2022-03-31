@@ -1,0 +1,33 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No</th>
+    <th>Name</th>
+    <th>Film</th>
+    <th>Foto</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < casting.length; i++){ %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= casting[i].nama %></td>
+        <td><%= casting[i].content?.nama ?? '-' %></td>
+        <td><%= casting[i].foto %></td>
+        <td>
+          <form action="/casting/delete/<%= casting[i].id %>?_method=DELETE" method="POST">
+            <a href="/casting/edit/<%= casting[i].id %>" class="btn btn-info btn-sm">
+              <i class="fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <button class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+              Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

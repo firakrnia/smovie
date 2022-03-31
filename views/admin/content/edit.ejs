@@ -28,10 +28,15 @@
           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Edit Content</h3>
+              <div class="text-right col">
+                
+                <a href="/content/<%= content.id %>/casting" class="btn btn-outline-light btn-sm" style="margin-right: 8px;">Cast</a>
+                <a href="/content/<%= content.id %>/ video" class="btn btn-outline-light btn-sm" style="margin-right: 8px;">Video</a>
+              </div>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="/content/edit/<%= content.id %>?_method=PUT"" method="POST" enctype="multipart/form-data">
+            <form action="/content/<%= content.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="form-group">
                   <label for="nama">Judul Film</label>

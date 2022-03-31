@@ -7,13 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bank</h1>
+            <h1>Cast</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="/bank">Bank</a></li>
-              <li class="breadcrumb-item active">New Bank</li>
+              <li class="breadcrumb-item"><a href="/casting">Cast</a></li>
+              <li class="breadcrumb-item active">New Cast</li>
             </ol>
           </div>
         </div>
@@ -27,23 +27,30 @@
             <div class="card-body">
                 <div class="card card-primary">
                     <div class="card-header">
-                      <h3 class="card-title">Add Bank</h3>
+                      <h3 class="card-title">Add Cast</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="/bank/add" method="post">
+                    <form action="/casting/add" method="post" enctype="multipart/form-data">
                       <div class="card-body">
                         <div class="form-group">
-                          <label for="name">Account Name</label>
-                          <input type="text" name="name" class="form-control" id="name" placeholder="Enter Account Name" required>
+                          <label for="nama">Nama</label>
+                          <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan Nama Cast" required>
                         </div>
                         <div class="form-group">
-                          <label for="bank_name">Bank Name</label>
-                          <input type="text" name="bank_name" class="form-control" id="bank_name" placeholder="Enter Bank Name" required>
+                          <label>Film</label>
+                          <select class="form-control select2" style="width: 100%;" name="id_content" required>
+                            <option selected="selected">Pilih Film</option>
+                            <% content.forEach(content=>{ %>
+                              <option value="<%= content.id %>"><%= content.nama %></option>
+                            <% }) %> 
+                          </select>
                         </div>
                         <div class="form-group">
-                          <label for="norek">Bank Account Number</label>
-                          <input type="text" name="norek" class="form-control" id="norek" placeholder="Enter Number Of Bank Account" required>
+                          <label for="foto">Foto</label>
+                          <input type="file" name="foto" class="form-control" id="foto" placeholder="Masukan Foto">
+                          <br >
+                          <img src="" id="preview"> 
                         </div>
                       </div>
                       <!-- /.card-body -->
@@ -63,3 +70,23 @@
 </div>
 <%- include ../../partials/footer.ejs %>
 <%- include ../../partials/js.ejs %>
+
+<script>
+  function readURL (input){
+    if(input.files && input.files[0]){
+      const reader = new FileReader();
+
+      reader.onload = function(e){
+        $('#preview').attr('src', e.target.result);
+        $('#preview').attr('width', '20%');
+        $('#preview').attr('height', '20%');
+      }
+
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+
+  $('#foto').change(function(){
+    readURL(this)
+  })
+</script>
