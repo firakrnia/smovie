@@ -33,15 +33,12 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 app.use('/', indexRouter.user);
 app.use('/', indexRouter.dashboard);
-app.use('/specification', indexRouter.specification)
-app.use('/product', indexRouter.product)
-app.use('/bank', indexRouter.bank)
-app.use('/payment', indexRouter.payment)
 
 app.use('/negara', indexRouter.negara)
 app.use('/category', indexRouter.category)
 app.use('/content', indexRouter.content)
 app.use('/casting', indexRouter.casting)
+app.use('/video', indexRouter.video)
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));

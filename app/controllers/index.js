@@ -1,24 +1,18 @@
 const controller ={}
 const dashboard = require('./dashboard')
 const category = require('./category')
-const specification = require ('./specification')
-const product = require('./product')
-const bank = require('./bank')
-const payment = require('./payment')
 const user = require('./user')
 const negara = require('./negara')
 const content = require('./content')
 const casting = require('./casting')
+const video = require('./video')
 
 controller.dashboard = dashboard
 controller.category = category
-controller.specification = specification
-controller.product = product
-controller.bank = bank
-controller.payment = payment
 controller.user = user
 controller.negara = negara
 controller.content = content
 controller.casting = casting
+controller.video = video
 
 module.exports= controller
