@@ -8,6 +8,7 @@ const payment = require('./payment')
 const user = require('./user')
 const negara = require('./negara')
 const content = require('./content')
+const casting = require('./casting')
 
 controller.dashboard = dashboard
 controller.category = category
@@ -18,5 +19,6 @@ controller.payment = payment
 controller.user = user
 controller.negara = negara
 controller.content = content
+controller.casting = casting
 
 module.exports= controller

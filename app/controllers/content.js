@@ -52,72 +52,72 @@ controller.viewAdd = async function(req, res){
 }
 
 controller.store = async function(req,res){
-    try {
-        if(req.file){
-            let tmp_path= req.file.path;
-            let originaExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
-            let filename = req.file.filename + '.' + originaExt;
-            let target_path = path.resolve(config.rootPath, `public/sampul/${filename}`)
+    // try {
+    //     if(req.file){
+    //         let tmp_path= req.file.path;
+    //         let originaExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
+    //         let filename = req.file.filename + '.' + originaExt;
+    //         let target_path = path.resolve(config.rootPath, `public/sampul/${filename}`)
     
-            const src = fs.createReadStream(tmp_path)
-            const dest = fs.createWriteStream(target_path)
+    //         const src = fs.createReadStream(tmp_path)
+    //         const dest = fs.createWriteStream(target_path)
     
-            src.pipe(dest)
+    //         src.pipe(dest)
     
-            src.on('end', async ()=>{
-              try {
-                const category = await model.category.findAll({
-                    where: {
-                        id: req.body.category
-                    }
-                })
-                const content = await model.content.create({
-                    nama: req.body.nama,
-                    id_negara: req.body.id_negara,
-                    sinopsis: req.body.sinopsis,
-                    jenis: req.body.jenis,
-                    tahun: req.body.tahun,
-                    sampul_film: filename
-                })
+    //         src.on('end', async ()=>{
+    //           try {
+    //             const category = await model.category.findAll({
+    //                 where: {
+    //                     id: req.body.category
+    //                 }
+    //             })
+    //             const content = await model.content.create({
+    //                 nama: req.body.nama,
+    //                 id_negara: req.body.id_negara,
+    //                 sinopsis: req.body.sinopsis,
+    //                 jenis: req.body.jenis,
+    //                 tahun: req.body.tahun,
+    //                 sampul_film: filename
+    //             })
 
-                const contentCategory = await content.addCategory(category)
+    //             const contentCategory = await content.addCategory(category)
     
-                req.flash('alertMessage', "Content Has Been Created")
-                req.flash('alertStatus', "success")
+    //             req.flash('alertMessage', "Content Has Been Created")
+    //             req.flash('alertStatus', "success")
           
-                res.redirect('/content')
+    //             res.redirect('/content')
                 
-              } catch (error) {
-                req.flash('alertMessage', `${error.message}`)
-                req.flash('alertStatus', 'danger')
-                res.redirect('/content')
-              }
-            })
-          }else{
-            const category = await model.category.findAll({
-                    where: {
-                        id: req.body.category
-                    }
-                })
-                const content = await model.content.create({
-                    nama: req.body.nama,
-                    id_negara: req.body.id_negara,
-                    sinopsis: req.body.sinopsis,
-                    jenis: req.body.jenis,
-                    tahun: req.body.tahun
-                })
+    //           } catch (error) {
+    //             req.flash('alertMessage', `${error.message}`)
+    //             req.flash('alertStatus', 'danger')
+    //             res.redirect('/content')
+    //           }
+    //         })
+    //       }else{
+    //         const category = await model.category.findAll({
+    //                 where: {
+    //                     id: req.body.category
+    //                 }
+    //             })
+    //             const content = await model.content.create({
+    //                 nama: req.body.nama,
+    //                 id_negara: req.body.id_negara,
+    //                 sinopsis: req.body.sinopsis,
+    //                 jenis: req.body.jenis,
+    //                 tahun: req.body.tahun
+    //             })
 
-                const contentCategory = await content.addCategory(category)
-        req.flash('alertMessage', "content Has Been Created")
-        req.flash('alertStatus', "success")
+    //             const contentCategory = await content.addCategory(category)
+    //     req.flash('alertMessage', "content Has Been Created")
+    //     req.flash('alertStatus', "success")
 
-        res.redirect('/content')
-        }
-    }catch (error) {
-        req.flash('alertMessage', `${error.message}`)
-        req.flash('alertStatus', 'danger')
-        res.redirect('/content')
-    }
+    //     res.redirect('/content')
+    //     }
+    // }catch (error) {
+    //     req.flash('alertMessage', `${error.message}`)
+    //     req.flash('alertStatus', 'danger')
+    //     res.redirect('/content')
+    // }
 }
 
 controller.viewEdit = async function(req, res){
@@ -242,33 +242,6 @@ controller.delete = async function(req,res){
     }
 }
 
-controller.updateStatus = async function(req, res){
-    try {
-        let contentStatus = await model.content.findOne({
-            where:{
-                id: req.params.id
-            }
-        })
-        let updateStatus = contentStatus.status === 'Y'?'N':'Y'
-
-        const content = await model.content.update({
-            status: updateStatus
-        },{
-            where:{
-                id: req.params.id
-            }
-        })
-
-        req.flash('alertMessage', "Status Has Been Updated")
-        req.flash('alertStatus', "success")
-
-        res.redirect('/content')
-    } catch (error) {
-        req.flash('alertMessage', `${error.message}`)
-        req.flash('alertStatus', 'danger')
-        res.redirect('/content')
-    }
-}
 
 module.exports= controller
 

@@ -1,5 +1,5 @@
 const model= {}
-// const player= require('./player')
+const casting= require('./casting')
 const negara= require('./negara')
 // const spec= require('./ca')
 const content = require('./content')
@@ -9,7 +9,7 @@ const user = require('./user')
 const category = require('./category')
 
 
-// model.player= player
+model.casting= casting
 model.negara= negara
 model.category=category
 model.content= content
